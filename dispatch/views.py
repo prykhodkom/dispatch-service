@@ -1,5 +1,7 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from dispatch.models import Worker, Driver, TypeOfTruck, Position
@@ -21,6 +23,26 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class PositionListView(generic.ListView):
     model = Position
+    paginate_by = 2
+
+
+class PositionCreateView(generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("dispatch:position-list")
+    template_name = "dispatch/position_form.html"
+
+
+class PositionUpdateView(generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("dispatch:position-list")
+    template_name = "dispatch/position_form.html"
+
+
+class PositionDeleteView(generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("dispatch:position-list")
 
 
 class DriverListView(generic.ListView):
@@ -34,4 +56,4 @@ class WorkerListView(generic.ListView):
 class TypeOfTruckListView(generic.ListView):
     model = TypeOfTruck
     template_name = "dispatch/type_of_truck_list.html"
-    context_object_name = "type_of_truck_list"
+    context_object_name = "type-of-truck-list"
