@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Truck List
+    <a href="#" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+
+  {% if type_of_truck_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Max weight</th>
+        <th>Length</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for type_of_truck in type_of_truck_list %}
+        <tr>
+          <td>
+              {{ type_of_truck.id }}
+          </td>
+          <td>
+              {{ type_of_truck.name }}
+          </td>
+          <td>
+              {{ type_of_truck.max_weight }}
+          </td>
+          <td>
+              {{ type_of_truck.length }}
+          </td>
+          <td>
+              <a href="#">
+                Update
+              </a>
+            </td>
+            <td>
+              <a style="color: red"
+                href="#">
+                Delete
+              </a>
+            </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no truck in the service.</p>
+  {% endif %}
+{% endblock %}

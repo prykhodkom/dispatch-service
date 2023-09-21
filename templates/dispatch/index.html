@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+  <title>Home page</title>
+{% endblock %}
+{% block content%}
+  <h1>Dispatch Service Home</h1>
+  <p>Welcome to the best Dispatch Service!</p>
+  <h3>Content</h3>
+  <ul>
+    <li>Num workers: {{ num_workers }}</li>
+    <li>Num drivers: {{ num_drivers }}</li>
+    <li>Num trucks: {{ num_trucks }}</li>
+    <li>Num positions: {{ num_position }}</li>
+  </ul>
+{% endblock %}
