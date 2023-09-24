@@ -12,4 +12,8 @@
     <li>Num trucks: {{ num_trucks }}</li>
     <li>Num positions: {{ num_position }}</li>
   </ul>
+
+  <p>You have visited this page
+    {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
 {% endblock %}

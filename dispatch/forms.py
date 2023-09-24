@@ -3,5 +3,5 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from dispatch.models import Worker, Driver, Truck
+from dispatch.models import Worker, Driver
 
