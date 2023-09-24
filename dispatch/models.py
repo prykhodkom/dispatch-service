@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class TypeOfTruck(models.Model):
+class Truck(models.Model):
     type = models.CharField(max_length=255)
     length = models.IntegerField()
     max_weight = models.IntegerField()
@@ -38,7 +38,7 @@ class Driver(models.Model):
     phone_number = models.CharField(max_length=255)
     home_location = models.CharField(max_length=255)
     worker = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="drivers")
-    type_of_truck = models.ForeignKey(TypeOfTruck, on_delete=models.CASCADE)
+    type_of_truck = models.ForeignKey(Truck, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ("first_name", "last_name")

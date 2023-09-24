@@ -1,7 +1,17 @@
-<ul>
+<ul class="sidebar-nav list-group">
+  {% if user.is_authenticated %}
+    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
+    <li class="list-group-item"><a href="#">Logout</a></li>
+  {% else %}
+    <li class="list-group-item"><a href="#">Login</a></li>
+  {% endif %}
+
+<br>
+
   <li class="list-group-item"><a href="{% url 'dispatch:index' %}">Home</a></li>
   <li class="list-group-item"><a href="{% url 'dispatch:worker-list' %}">All workers</a></li>
-  <li class="list-group-item"><a href="{% url 'dispatch:position-list' %}">All positions</a></li>
   <li class="list-group-item"><a href="{% url 'dispatch:driver-list' %}">All drivers</a></li>
-  <li class="list-group-item"><a href="{% url 'dispatch:type-of-truck-list' %}">All type of truck</a></li>
+  <li class="list-group-item"><a href="{% url 'dispatch:position-list' %}">All positions</a></li>
+  <li class="list-group-item"><a href="{% url 'dispatch:truck-list' %}">All trucks</a></li>
+
 </ul>

@@ -8,7 +8,10 @@ from dispatch.views import (
     PositionCreateView,
     PositionUpdateView,
     PositionDeleteView,
-    TypeOfTruckListView,
+    TruckListView,
+    TruckCreateView,
+    TruckUpdateView,
+    TruckDeleteView,
 )
 
 urlpatterns = [
@@ -27,7 +30,16 @@ urlpatterns = [
         PositionDeleteView.as_view(),
         name="position-delete",
     ),
-    path("truck/", TypeOfTruckListView.as_view(), name="type-of-truck-list"),
+    path("truck/", TruckListView.as_view(), name="truck-list"),
+    path("truck/create/", TruckCreateView.as_view(), name="truck-create"),
+    path(
+        "truck/<int:pk>/update/",
+        TruckUpdateView.as_view(),
+        name="truck-update"),
+    path(
+        "truck/<int:pk>/delete/",
+        TruckDeleteView.as_view(),
+        name="truck-delete"),
 ]
 
 app_name = "dispatch"

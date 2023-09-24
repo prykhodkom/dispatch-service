@@ -3,44 +3,44 @@
 {% block content %}
   <h1>
     Truck List
-    <a href="#" class="btn btn-primary link-to-page">
+    <a href="{% url 'dispatch:truck-create' %}" class="btn btn-primary link-to-page">
       Create
     </a>
   </h1>
 
-  {% if type_of_truck_list %}
+  {% if truck_list %}
     <table class="table">
       <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Max weight</th>
+        <th>Type</th>
         <th>Length</th>
+        <th>Max weight</th>
         <th>Update</th>
         <th>Delete</th>
       </tr>
 
-      {% for type_of_truck in type_of_truck_list %}
+      {% for truck in truck_list %}
         <tr>
           <td>
-              {{ type_of_truck.id }}
+              {{ truck.id }}
           </td>
           <td>
-              {{ type_of_truck.name }}
+              {{ truck.type }}
           </td>
           <td>
-              {{ type_of_truck.max_weight }}
+              {{ truck.length }}
           </td>
           <td>
-              {{ type_of_truck.length }}
+              {{ truck.max_weight }}
           </td>
           <td>
-              <a href="#">
+              <a href="{% url 'dispatch:truck-update' pk=truck.id %}">
                 Update
               </a>
             </td>
             <td>
               <a style="color: red"
-                href="#">
+                href="{% url 'dispatch:truck-delete' pk=truck.id %}">
                 Delete
               </a>
             </td>
