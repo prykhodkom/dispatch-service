@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from dispatch.forms import DriverForm
 from dispatch.models import Worker, Driver, Truck, Position
 
 
@@ -53,6 +54,26 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 
 class DriverListView(LoginRequiredMixin, generic.ListView):
+    model = Driver
+
+
+class DriverCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Driver
+    form_class = DriverForm
+    success_url = reverse_lazy("dispatch:driver-list")
+
+
+class DriverUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Driver
+    form_class = DriverForm
+    success_url = reverse_lazy("dispatch:driver-list")
+
+
+class DriverDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Driver
+
+
+class DriverDetailView(LoginRequiredMixin, generic.DetailView):
     model = Driver
 
 
