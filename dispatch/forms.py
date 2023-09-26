@@ -16,3 +16,9 @@ class DriverForm(forms.ModelForm):
     class Meta:
         model = Driver
         fields = "__all__"
+
+
+class WorkerCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Worker
+        fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "position",)

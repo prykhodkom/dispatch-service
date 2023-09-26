@@ -3,7 +3,7 @@
 {% block content %}
     <h1>
         Worker List
-        <a href="#" class="btn btn-primary link-to-page">
+        <a href="{% url 'dispatch:worker-create' %}" class="btn btn-primary link-to-page">
         Create
         </a>
     </h1>
@@ -11,7 +11,6 @@
     {% if worker_list %}
     <table class="table">
       <tr>
-        <th>ID</th>
         <th>Username</th>
         <th>First name</th>
         <th>Last name</th>
@@ -19,8 +18,7 @@
       </tr>
     {% for worker in worker_list %}
       <tr>
-        <td>{{ worker.id }}</td>
-        <td><a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a></td>
+        <td><a href="{% url 'dispatch:worker-detail' pk=worker.id %}">{{ worker.username }}</a></td>
         <td>{{ worker.first_name }}</td>
         <td>{{ worker.last_name }}</td>
         <td>{{ worker.position }}</td>

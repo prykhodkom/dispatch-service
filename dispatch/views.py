@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from dispatch.forms import DriverForm
+from dispatch.forms import DriverForm, WorkerCreationForm
 from dispatch.models import Worker, Driver, Truck, Position
 
 
@@ -81,6 +81,29 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
 
 
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+
+
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Worker
+    form_class = WorkerCreationForm
+    success_url = reverse_lazy("dispatch:worker-list")
+
+
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    fields = ("first_name", "last_name", "position",)
+    success_url = reverse_lazy("dispatch:worker-list")
+    template_name = "dispatch/worker_form.html"
+
+
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("dispatch:worker-list")
+    template_name = "dispatch/worker_confirm_delete.html"
+
+
 class TruckListView(LoginRequiredMixin, generic.ListView):
     model = Truck
     context_object_name = "truck-list"
@@ -102,6 +125,5 @@ class TruckUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class TruckDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Truck
-    fields = "__all__"
     success_url = reverse_lazy("dispatch:truck-list")
     template_name = "dispatch/truck_confirm_delete.html"
