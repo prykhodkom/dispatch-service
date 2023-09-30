@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from dispatch.models import Driver, Position, Truck, Worker
+from dispatch.models import Driver, Position, Truck
 
 
 class ModelsTests(TestCase):
