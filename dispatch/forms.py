@@ -58,3 +58,36 @@ class TruckSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by type..."})
     )
+
+
+def validate_phone_number(phone_number: str) -> str:
+    if len(phone_number) != 12:
+        raise ValidationError(
+            "The phone number must contain 12 characters"
+        )
+    if not phone_number.startswith("+1"):
+        raise ValidationError(
+            "The first two characters must be '+1'"
+        )
+    if not phone_number[1:].isdigit():
+        raise ValidationError(
+            "Last 11 characters must be digits"
+        )
+    return phone_number
+
+
+class DriverUpdateForm(forms.ModelForm):
+    worker = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+    )
+
+    class Meta:
+        model = Driver
+        fields = "__all__"
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data["phone_number"]
+        validate_phone_number(phone_number)
+        return phone_number
