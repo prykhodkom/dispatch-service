@@ -12,7 +12,7 @@ class Truck(models.Model):
         ordering = ["type"]
 
     def __str__(self):
-        return f"{self.type} with length: {self.length}' and max weight: {self.max_weight} lbs"
+        return f"{self.length}' {self.type}(max weight: {self.max_weight} lbs)"
 
 
 class Position(models.Model):
@@ -29,7 +29,7 @@ class Worker(AbstractUser):
         ordering = ["username"]
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.username} ({self.first_name} {self.last_name})"
 
 
 class Driver(models.Model):

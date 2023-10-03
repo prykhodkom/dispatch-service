@@ -10,7 +10,7 @@ class ModelsTests(TestCase):
             name="Test",
         )
         self.assertEqual(
-            str(position), f"{position.name}"
+            str(position), position.name
         )
 
     def test_truck_str(self):
