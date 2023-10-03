@@ -126,7 +126,7 @@ class PrivateWorkerTest(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             username="test",
-            password="testpassword1234",
+            password="testpassword`1234",
         )
         self.client.force_login(self.user)
 
