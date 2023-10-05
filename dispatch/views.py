@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from dispatch.forms import DriverForm, WorkerCreationForm, WorkerSearchForm, TruckSearchForm, PositionSearchForm, \
-    DriverSearchForm, DriverUpdateForm
+    DriverSearchForm
 from dispatch.models import Worker, Driver, Truck, Position
 
 
@@ -113,12 +113,13 @@ class DriverCreateView(LoginRequiredMixin, generic.CreateView):
 
 class DriverUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Driver
-    form_class = DriverUpdateForm
+    form_class = DriverForm
     success_url = reverse_lazy("dispatch:driver-list")
 
 
 class DriverDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Driver
+    success_url = reverse_lazy("dispatch:driver-list")
 
 
 class DriverDetailView(LoginRequiredMixin, generic.DetailView):
